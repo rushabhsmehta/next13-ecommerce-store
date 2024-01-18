@@ -15,7 +15,7 @@ const gettourPackages = async (query: Query): Promise<TourPackage[]> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: { 
-    //    locationId : query.locationId,
+    //   locationId : query.locationId,
     //   colorId: query.colorId,
     //   sizeId: query.sizeId,
     //   categoryId: query.categoryId,
