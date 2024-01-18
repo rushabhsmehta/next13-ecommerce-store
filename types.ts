@@ -9,6 +9,19 @@ export interface Product {
   images: Image[]
 };
 
+export interface TourPackage {
+  id: string;
+  storeId : string;
+  locationId : string;
+//category: Category;
+  tourPackageName: string;
+  price: string;
+  isFeatured: boolean;
+ // size: Size;
+ // color: Color;
+  images: Image[]
+};
+
 export interface Image {
   id: string;
   url: string;
