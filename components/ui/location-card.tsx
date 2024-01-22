@@ -43,7 +43,7 @@ const LocationCard: React.FC<LocationCard> = ({
       {/* Image & actions */}
       <div className="aspect-square rounded-xl bg-gray-100 relative">
         <Image 
-          src={data.images?.[0]?.url} 
+          src={data.imageUrl} 
           alt="" 
           fill
           className="aspect-square object-cover rounded-md"
@@ -67,9 +67,9 @@ const LocationCard: React.FC<LocationCard> = ({
         <p className="text-sm text-gray-500">{data.label}</p>
       </div>
       {/* Price & Reiew */}
-      <div className="flex items-center justify-between">
+     {/*  <div className="flex items-center justify-between">
         <Currency value={data?.label} />
-      </div>
+      </div> */}
     </div>
   );
 }

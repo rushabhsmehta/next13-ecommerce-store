@@ -28,6 +28,9 @@ export interface Location {
  // locationId : string;
 //category: Category;
   label : string;
+
+  imageUrl : string;
+  searchLocationParams : string;
  // price: string;
  // isFeatured: boolean;
  // size: Size;
