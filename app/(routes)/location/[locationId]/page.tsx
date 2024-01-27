@@ -30,6 +30,7 @@ const LocationPage: React.FC<LocationPageProps> = async ({
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+            {location.label}
             <Gallery images={location.images} />
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
 {/*               <Info data={tourPackage} />

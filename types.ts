@@ -30,7 +30,7 @@ export interface Location {
   label : string;
 
   imageUrl : string;
-  searchLocationParams : string;
+  searchLTerm : string;
  // price: string;
  // isFeatured: boolean;
  // size: Size;

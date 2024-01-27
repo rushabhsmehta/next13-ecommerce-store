@@ -2,7 +2,6 @@ import getBillboard from "@/actions/get-billboard";
 import getProducts from "@/actions/get-products";
 import getTourPackages from "@/actions/get-tourPackages";
 import getLocations from "@/actions/get-locations";
-import getLocationsBySearchTerm from "@/actions/get-locationsfromSearchTerm";
 
 
 import React, { useState } from 'react';

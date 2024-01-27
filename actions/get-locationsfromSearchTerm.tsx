@@ -12,7 +12,7 @@ interface Query {
 searchTerm : string;
 }
 
-const getLocationsFrommSearchTerm = async (query: Query): Promise<Location[]> => {
+const getLocationsFromSearchTerm = async (query: Query): Promise<Location[]> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: { 
@@ -20,7 +20,8 @@ const getLocationsFrommSearchTerm = async (query: Query): Promise<Location[]> =>
     //   colorId: query.colorId,
     //   sizeId: query.sizeId,
     //   categoryId: query.categoryId,
-    searchLocationParams : query.searchTerm,
+    
+    label : query.searchTerm,
    // isFeatured : query.isFeatured,
     },
   });
@@ -30,4 +31,4 @@ const getLocationsFrommSearchTerm = async (query: Query): Promise<Location[]> =>
   return res.json();
 };
 
-export default getLocationsFrommSearchTerm;
+export default getLocationsFromSearchTerm;
