@@ -7,15 +7,15 @@ import getLocationsFromSearchTerm from '@/actions/get-locationsfromSearchTerm';
 export const revalidate = 0;
 
 interface SearchLocationsPageProps {
-  params: {
+  searchParams: {
     searchTerm : string;
   },
 }
 
 const SearchLocationsPage : React.FC<SearchLocationsPageProps> = async ({ 
-  params
+  searchParams
  }) => {
-  const locations = await getLocationsFromSearchTerm({searchTerm : params.searchTerm});
+  const locations = await getLocationsFromSearchTerm({label  : searchParams.searchTerm});
 //  const suggestedTourPackages = await getTourPackages({ 
 //    locationId: tourPackage?.locationId
 //  });

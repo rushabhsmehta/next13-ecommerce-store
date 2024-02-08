@@ -9,7 +9,7 @@ export default function SearchBar() {
 
   const handleSearch = (event: { preventDefault: () => void; }) => {
     event.preventDefault(); // Prevent the default form submit behavior
-    router.push(`/searchLocations?query=${encodeURIComponent(searchTerm)}`); // Use the router to navigate
+    router.push(`/searchLocations/${encodeURIComponent(searchTerm)}`);
   };
 
   return (

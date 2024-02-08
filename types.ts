@@ -22,6 +22,19 @@ export interface TourPackage {
   images: Image[]
 };
 
+export interface TourPackageQuery {
+  id: string;
+  storeId : string;
+  locationId : string;
+//category: Category;
+  tourPackageQueryName: string;
+  price: string;
+  isFeatured: boolean;
+ // size: Size;
+ // color: Color;
+  images: Image[]
+};
+
 export interface Location {
   id: string;
   storeId : string;

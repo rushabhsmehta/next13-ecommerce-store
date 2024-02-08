@@ -15,7 +15,7 @@ interface SearchLocationsPageProps {
 const SearchLocationsPage : React.FC<SearchLocationsPageProps> = async ({ 
   params
  }) => {
-  const locations = await getLocationsFromSearchTerm({searchTerm : params.searchTerm});
+  const locations = await getLocationsFromSearchTerm({label  : params.searchTerm});
 //  const suggestedTourPackages = await getTourPackages({ 
 //    locationId: tourPackage?.locationId
 //  });
@@ -26,7 +26,8 @@ const SearchLocationsPage : React.FC<SearchLocationsPageProps> = async ({
 
   return (
     <div className="bg-white">
-      <Container>       
+      <Container>
+       
           <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
           <LocationList title="Locations" items={locations} />
         </div>

@@ -4,6 +4,7 @@ import Info from '@/components/info';
 import getLocation from '@/actions/get-location';
 import getLocations from '@/actions/get-locations';
 import Container from '@/components/ui/container';
+import Image from "next/image";
 
 export const revalidate = 0;
 
@@ -13,13 +14,13 @@ interface LocationPageProps {
   },
 }
 
-const LocationPage: React.FC<LocationPageProps> = async ({ 
+const LocationPage: React.FC<LocationPageProps> = async ({
   params
- }) => {
+}) => {
   const location = await getLocation(params.locationId);
-//  const suggestedTourPackages = await getTourPackages({ 
-//    locationId: tourPackage?.locationId
-//  });
+  //  const suggestedTourPackages = await getTourPackages({ 
+  //    locationId: tourPackage?.locationId
+  //  });
 
   if (!location) {
     return null;
@@ -30,17 +31,25 @@ const LocationPage: React.FC<LocationPageProps> = async ({
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
-            {location.label}
+
+            <div className="aspect-square rounded-xl bg-gray-100 relative">
+              <Image
+                src={location.imageUrl}
+                alt=""
+                fill
+                className="aspect-square object-cover rounded-md"
+              />
+            </div>
             <Gallery images={location.images} />
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-{/*               <Info data={tourPackage} />
+              {/*               <Info data={tourPackage} />
  */}            </div>
           </div>
           <hr className="my-10" />
           {/* <TourPackageList title="Related Items" items={suggestedTourPackages} /> */}
         </div>
       </Container>
-    </div>  
+    </div>
   )
 }
 

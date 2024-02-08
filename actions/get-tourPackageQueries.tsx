@@ -1,7 +1,7 @@
-import { Location } from "@/types";
+import { TourPackageQuery } from "@/types";
 import qs from "query-string";
 
-const URL=`${process.env.NEXT_PUBLIC_API_URL}/locations`;
+const URL=`${process.env.NEXT_PUBLIC_API_URL}/tourPackageQuery`;
 
 interface Query {
  //   locationId? : string;
@@ -9,18 +9,18 @@ interface Query {
 //   colorId?: string;
 //   sizeId?: string;
 //     isFeatured?: boolean;
-label : string;
+storeId : string;
 }
 
-const getLocationsFromSearchTerm = async (query: Query): Promise<Location[]> => {
+const gettourPackageQueries = async (query: Query): Promise<TourPackageQuery []> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: { 
     //   locationId : query.locationId,
     //   colorId: query.colorId,
     //   sizeId: query.sizeId,
-    //   categoryId: query.categoryId,    
-    label : query.label,
+    //   categoryId: query.categoryId,
+    storeId : query.storeId,
    // isFeatured : query.isFeatured,
     },
   });
@@ -30,4 +30,4 @@ const getLocationsFromSearchTerm = async (query: Query): Promise<Location[]> => 
   return res.json();
 };
 
-export default getLocationsFromSearchTerm;
+export default gettourPackageQueries;
