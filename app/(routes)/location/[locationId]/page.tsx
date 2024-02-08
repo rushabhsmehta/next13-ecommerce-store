@@ -5,6 +5,7 @@ import getLocation from '@/actions/get-location';
 import getLocations from '@/actions/get-locations';
 import Container from '@/components/ui/container';
 import Image from "next/image";
+import getTourPackageQuery from '@/actions/get-tourPackageQuery';
 
 export const revalidate = 0;
 
@@ -18,6 +19,8 @@ const LocationPage: React.FC<LocationPageProps> = async ({
   params
 }) => {
   const location = await getLocation(params.locationId);
+  const tourPackageQuery = await getTourPackageQuery(params.locationId);
+
   //  const suggestedTourPackages = await getTourPackages({ 
   //    locationId: tourPackage?.locationId
   //  });
@@ -40,10 +43,12 @@ const LocationPage: React.FC<LocationPageProps> = async ({
                 className="aspect-square object-cover rounded-md"
               />
             </div>
-            <Gallery images={location.images} />
+            <div> { tourPackageQuery.tourPackageQueryName } </div>
+            <div> { tourPackageQuery.price } </div>
+            <Gallery images={tourPackageQuery.images} />
             <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-              {/*               <Info data={tourPackage} />
- */}            </div>
+              {/*               <Info data={tourPackage} /> */}
+            </div>
           </div>
           <hr className="my-10" />
           {/* <TourPackageList title="Related Items" items={suggestedTourPackages} /> */}
