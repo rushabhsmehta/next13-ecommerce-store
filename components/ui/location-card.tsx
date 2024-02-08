@@ -21,9 +21,13 @@ const LocationCard: React.FC<LocationCard> = ({
 //  const previewModal = usePreviewModal();
 //  const cart = useCart();
   const router = useRouter();
-
+/* 
   const handleClick = () => {
     router.push(`/location/${data?.id}`);
+  }; */
+
+  const handleClick = () => {
+    router.push(`/tourPackage/${data?.id}`);
   };
 
  /*  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
