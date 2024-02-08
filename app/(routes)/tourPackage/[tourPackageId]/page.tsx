@@ -1,4 +1,3 @@
-import TourPackageList from '@/components/tourPackage-list'
 import Gallery from '@/components/gallery';
 import Info from '@/components/info';
 import getTourPackage from '@/actions/get-tourPackage';
