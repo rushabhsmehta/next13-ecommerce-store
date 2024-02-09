@@ -1,7 +1,7 @@
 
 import getTourPackage from '@/actions/get-tourPackage';
 
-import TourPackageCard from '@/components/ui/tourPackage-card';
+import TourPackageDetails from '@/components/ui/tourPackage-details';
 
 export const revalidate = 0;
 
@@ -26,7 +26,7 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   return (
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">Tour Packages </h3>
-      <TourPackageCard key={tourPackage.id} data={tourPackage} />
+      <TourPackageDetails key={tourPackage.id} data={tourPackage} />
     </div>
 
   );
