@@ -27,7 +27,7 @@ const LocationCard: React.FC<LocationCard> = ({
   }; */
 
   const handleClick = () => {
-    router.push(`/tourPackage/${data?.id}`);
+    router.push(`/tourPackages/${data?.id}`);
   };
 
  /*  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {

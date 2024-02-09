@@ -9,7 +9,7 @@ interface Query {
 //   colorId?: string;
 //   sizeId?: string;
 //     isFeatured?: boolean;
-storeId : string;
+locationId : string;
 }
 
 const gettourPackages = async (query: Query): Promise<TourPackage[]> => {
@@ -20,7 +20,7 @@ const gettourPackages = async (query: Query): Promise<TourPackage[]> => {
     //   colorId: query.colorId,
     //   sizeId: query.sizeId,
     //   categoryId: query.categoryId,
-    storeId : query.storeId,
+    locationId : query.locationId,
    // isFeatured : query.isFeatured,
     },
   });

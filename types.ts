@@ -11,6 +11,7 @@ export interface Product {
 
 export interface TourPackage {
   id: string;
+  tourPackageId : string;
   storeId : string;
   locationId : string;
 //category: Category;
