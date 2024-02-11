@@ -10,12 +10,13 @@ import IconButton  from "@/components/ui/icon-button";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import useCart from "@/hooks/use-cart";
 import { TourPackage } from "@/types";
+import getLocations from "@/actions/get-location";
 
 interface TourPackageDetails {
   data: TourPackage
 }
 
-const TourPackageDetails : React.FC<TourPackageDetails> = ({
+const TourPackageDetails : React.FC<TourPackageDetails> = async ({
   data
 }) => {
 //  const previewModal = usePreviewModal();
@@ -25,6 +26,8 @@ const TourPackageDetails : React.FC<TourPackageDetails> = ({
   const handleClick = () => {
     router.push(`/tourPackage/${data?.id}`);
   };
+
+  const location = await getLocations(data?.locationId);
 
  /*  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -64,7 +67,7 @@ const TourPackageDetails : React.FC<TourPackageDetails> = ({
       {/* Description */}
       <div>
         <p className="font-semibold text-lg">{data.tourPackageName}</p>
-        <p className="text-sm text-gray-500">{data.tourPackageName}</p>
+        <p className="text-sm text-gray-500">{location.label}</p>
       </div>
       {/* Price & Reiew */}
       <div className="flex items-center justify-between">

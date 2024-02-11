@@ -1,22 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { MouseEventHandler } from "react";
-import { Expand, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import Currency  from "@/components/ui/currency";
-import IconButton  from "@/components/ui/icon-button";
-import usePreviewModal from "@/hooks/use-preview-modal";
-import useCart from "@/hooks/use-cart";
 import { TourPackage } from "@/types";
-import Container from "./container";
+import getLocations from "@/actions/get-location";
 
 interface TourPackageCard {
   data: TourPackage
 }
 
-const TourPackageCard: React.FC<TourPackageCard> = ({
+const TourPackageCard: React.FC<TourPackageCard> = async ({
   data
 }) => {
 //  const previewModal = usePreviewModal();
@@ -27,6 +22,7 @@ const TourPackageCard: React.FC<TourPackageCard> = ({
     router.push(`/tourPackage/${data?.id}`);
   };
 
+  const location = await getLocations(data?.locationId);
  /*  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
 
@@ -65,7 +61,7 @@ const TourPackageCard: React.FC<TourPackageCard> = ({
       {/* Description */}
       <div>
         <p className="font-semibold text-lg">{data.tourPackageName}</p>
-        <p className="text-sm text-gray-500">{data.locationId}</p>
+        <p className="text-sm text-gray-500">{location.label}</p>
       </div>
       {/* Price & Reiew */}
       <div className="flex items-center justify-between">
