@@ -24,9 +24,10 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   }
 
   return (
-    <div className="space-y-4">
-      <h3 className="font-bold text-3xl">Tour Packages </h3>
-      <TourPackageDetails key={tourPackage.id} data={tourPackage} />
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+    <h1 className="text-4xl font-bold text-center mb-10">Tour Package Details</h1>
+    <TourPackageDetails data={tourPackage} />  
     </div>
 
   );

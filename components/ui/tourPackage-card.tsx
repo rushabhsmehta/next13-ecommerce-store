@@ -10,6 +10,7 @@ import IconButton  from "@/components/ui/icon-button";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import useCart from "@/hooks/use-cart";
 import { TourPackage } from "@/types";
+import Container from "./container";
 
 interface TourPackageCard {
   data: TourPackage
@@ -39,6 +40,7 @@ const TourPackageCard: React.FC<TourPackageCard> = ({
   }; */
   
   return ( 
+    <Container>
     <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
       {/* Image & actions */}
       <div className="aspect-square rounded-xl bg-gray-100 relative">
@@ -71,6 +73,7 @@ const TourPackageCard: React.FC<TourPackageCard> = ({
         <Currency value={data?.price} />
       </div>
     </div>
+    </Container>
   );
 }
 
