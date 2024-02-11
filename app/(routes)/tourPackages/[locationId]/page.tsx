@@ -28,18 +28,15 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
 
   return (
     <div className="space-y-4">
-      <Container>
-        <h3 className="font-bold text-3xl">Tour Packages </h3>
-        {tourPackages.length === 0 && <NoResults />}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {tourPackages.map((tourPackage) => (
-            <TourPackageCard key={tourPackage.id} data={tourPackage} />
+    <h3 className="font-bold text-3xl">Tour Packages </h3>
+    {tourPackages.length === 0 && <NoResults />}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {tourPackages.map((tourPackage) => (
+          <TourPackageCard key={tourPackage.id}  data={tourPackage} />
           ))}
+          </div>
         </div>
-      </Container>
-    </div>
-
-  );
-}
-
-export default TourPackagePage;
+       );
+    }
+  
+  export default TourPackagePage;
