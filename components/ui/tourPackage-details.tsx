@@ -76,7 +76,6 @@ const TourPackageDetails: React.FC<TourPackageDetails> = async ({
             </div>
           )}
 
-// Itineraries with Activities
           {data.itineraries && data.itineraries.length > 0 && (
             <div className="bg-white px-4 py-5 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Itineraries</dt>
