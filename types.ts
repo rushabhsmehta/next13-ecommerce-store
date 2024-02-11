@@ -66,6 +66,7 @@ export interface Itinerary {
   tourPackageId?: string;
   itineraryTitle?: string;
   itineraryDescription?: string;
+  itineraryImages : Images[];
   dayNumber?: number;
   days?: string;
   hotelId?: string;
@@ -84,6 +85,7 @@ export interface Activity {
   itineraryId?: string;
   activityTitle?: string;
   activityDescription?: string;
+  activityImages : Images[];
   createdAt: Date;
   updatedAt: Date;
 }

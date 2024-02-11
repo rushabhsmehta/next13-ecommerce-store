@@ -68,8 +68,8 @@ const LocationCard: React.FC<LocationCard> = ({
       {/* Description */}
       <div>
         <p className="font-semibold text-lg">{data.label}</p>
-        <p className="text-sm text-gray-500">{data.label}</p>
-      </div>
+{/*         <p className="text-sm text-gray-500">{ data.label }</p>
+ */}      </div>
       {/* Price & Reiew */}
      {/*  <div className="flex items-center justify-between">
         <Currency value={data?.label} />

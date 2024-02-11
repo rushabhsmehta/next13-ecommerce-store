@@ -11,7 +11,7 @@ interface TourPackageCard {
   data: TourPackage
 }
 
-const TourPackageCard: React.FC<TourPackageCard> = async ({
+const TourPackageCard: React.FC<TourPackageCard> =  ({
   data
 }) => {
 //  const previewModal = usePreviewModal();
@@ -22,7 +22,7 @@ const TourPackageCard: React.FC<TourPackageCard> = async ({
     router.push(`/tourPackage/${data?.id}`);
   };
 
-  const location = await getLocations(data?.locationId);
+ // const location = await getLocations(data?.locationId);
  /*  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
 
@@ -61,7 +61,7 @@ const TourPackageCard: React.FC<TourPackageCard> = async ({
       {/* Description */}
       <div>
         <p className="font-semibold text-lg">{data.tourPackageName}</p>
-        <p className="text-sm text-gray-500">{location.label}</p>
+        <p className="text-sm text-gray-500">{data.locationId}</p>
       </div>
       {/* Price & Reiew */}
       <div className="flex items-center justify-between">

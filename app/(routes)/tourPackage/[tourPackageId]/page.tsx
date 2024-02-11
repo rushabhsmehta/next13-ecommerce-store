@@ -18,6 +18,7 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   //  const suggestedTourPackages = await getTourPackages({ 
   //    locationId: tourPackage?.locationId
   //  });
+  
 
   if (!tourPackage) {
     return null;
@@ -25,8 +26,7 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      
-    <h1 className="text-4xl font-bold text-center mb-10">Tour Package Details</h1>
+
     <TourPackageDetails data={tourPackage} />  
     </div>
 
