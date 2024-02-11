@@ -65,7 +65,7 @@ const TourPackageCard: React.FC<TourPackageCard> = ({
       {/* Description */}
       <div>
         <p className="font-semibold text-lg">{data.tourPackageName}</p>
-        <p className="text-sm text-gray-500">{data.tourPackageName}</p>
+        <p className="text-sm text-gray-500">{data.locationId}</p>
       </div>
       {/* Price & Reiew */}
       <div className="flex items-center justify-between">
