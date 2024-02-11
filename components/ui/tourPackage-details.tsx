@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { TourPackage } from "@/types";
@@ -12,24 +11,26 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
   const router = useRouter();
 
   const sortedItineraries = [...data.itineraries].sort((a, b) => {
-    // Provide a fallback value for dayNumber, e.g., 0 or a very large number depending on your sorting logic
     const dayA = a.dayNumber ?? 0;
     const dayB = b.dayNumber ?? 0;
     return dayA - dayB;
   });
+
   const handleBack = () => {
     router.back();
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden my-4 lg:mx-40 md:mx-40">
-      {/* Header with main tour package details */}
+    <div className="min-h-screen flex flex-col px-40">
       <div className="px-4 py-5 sm:p-6">
-        <h1 className="text-3xl font-semibold text-center mb-4">{data.tourPackageName}</h1>
+        <h1 className="text-3xl font-semibold text-center mb-4">
+          <span className="bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text">
+            {data.tourPackageName}
+          </span>
+        </h1>
         <p className="text-md text-gray-600 text-center">{data.numDaysNight} - {data.locationId}</p>
       </div>
 
-      {/* Image gallery */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {data.images.map((image, index) => (
           <div key={index} className="rounded-lg overflow-hidden">
@@ -38,14 +39,13 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
         ))}
       </div>
 
-
-      <div className="space-y-6">
+      <div className="flex-1 space-y-6 overflow-y-auto">
         {sortedItineraries.map((itinerary, itineraryIndex) => (
-          <div key={itineraryIndex} className="bg-white shadow rounded-lg p-4 mb-6">
+          <div key={itineraryIndex} className="bg-white shadow-lg rounded-lg p-4 mb-6">
             <div className={`flex ${itineraryIndex % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center space-x-4 space-x-reverse mb-4`}>
               <div className="flex-1">
-                <h2 className="text-xl font-bold">Day {itinerary.dayNumber}: {itinerary.itineraryTitle}</h2>
-                <p>{itinerary.itineraryDescription}</p>
+                <h1 className="text-xl bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text">Day {itinerary.dayNumber}: {itinerary.itineraryTitle}</h1>
+                <p className="text-gray-900">{itinerary.itineraryDescription}</p>
               </div>
               <div className="w-48 h-48 relative">
                 {itinerary.itineraryImages[0] && (
@@ -59,14 +59,13 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
                 )}
               </div>
             </div>
-            {/* Separator */}
-            <hr className="my-4" />
+            <hr className="border-gray-800 my-4" />
             {itinerary.activities.map((activity, activityIndex) => (
               <div key={activityIndex} className="mb-4 last:mb-0">
                 <div className={`flex ${activityIndex % 2 !== 0 ? 'flex-row' : 'flex-row-reverse'} items-center space-x-4 space-x-reverse`}>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold">{activity.activityTitle}</h3>
-                    <p>{activity.activityDescription}</p>
+                    <h3 className="text-lg bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text">{activity.activityTitle}</h3>
+                    <p className="text-gray-800">{activity.activityDescription}</p>
                   </div>
                   <div className="w-48 h-48 relative">
                     {activity.activityImages[0] && (
@@ -80,26 +79,13 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
                     )}
                   </div>
                 </div>
-                {/* Separator for activities */}
-                {activityIndex < itinerary.activities.length - 1 && <hr className="my-4" />}
+                {activityIndex < itinerary.activities.length - 1 && <hr className="border-gray-800 my-4" />}
               </div>
             ))}
           </div>
         ))}
       </div>
 
-      {/* Additional information such as policies and terms */}
-      <div className="px-4 py-5 sm:p-6 border-t">
-        <h3 className="text-lg font-semibold mb-3">Additional Information</h3>
-        <p className="mb-2"><strong>Inclusions:</strong> {data.inclusions}</p>
-        <p className="mb-2"><strong>Exclusions:</strong> {data.exclusions}</p>
-        <p className="mb-2"><strong>Payment Policy:</strong> {data.paymentPolicy}</p>
-        <p className="mb-2"><strong>Cancellation Policy:</strong> {data.cancellationPolicy}</p>
-        <p className="mb-2"><strong>Airline Cancellation Policy:</strong> {data.airlineCancellationPolicy}</p>
-        <p className="mb-2"><strong>Terms and Conditions:</strong> {data.termsconditions}</p>
-      </div>
-
-      {/* Back button */}
       <div className="px-4 py-5 sm:p-6 border-t text-center">
         <button onClick={handleBack} className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-150">
           Back
