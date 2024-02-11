@@ -3,12 +3,12 @@
 import NextImage from "next/image";
 import { Tab } from "@headlessui/react";
 
-import { Image } from "@/types";
+import { Images } from "@/types";
 
 import GalleryTab from "./gallery-tab";
 
 interface GalleryProps {
-  images: Image[];
+  images: Images[];
 }
 
 const Gallery: React.FC<GalleryProps> = ({
