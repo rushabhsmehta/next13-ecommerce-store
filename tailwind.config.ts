@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      textAlign: {
+        justify: 'justify',
+      },
       colors: {
         
         border: "hsl(var(--border))",

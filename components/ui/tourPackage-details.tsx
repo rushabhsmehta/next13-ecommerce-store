@@ -2,12 +2,19 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { TourPackage } from "@/types";
+import getLocations from "@/actions/get-location";
+import getLocation from "@/actions/get-location";
+
+interface Location {
+  label: string;
+}
 
 interface TourPackageDetailsProps {
   data: TourPackage;
+  location: Location;
 }
 
-const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
+const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data, location }) => {
   const router = useRouter();
 
   const sortedItineraries = [...data.itineraries].sort((a, b) => {
@@ -20,34 +27,33 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
     router.back();
   };
 
+
+
   return (
-    <div className="min-h-screen flex flex-col px-40">
-      <div className="px-4 py-5 sm:p-6">
+    <div className="min-h-screen flex flex-col sm:px-6 lg:px-40 py-10">
+
+      {/* Tour Package Name and Duration */}
+      <div className="py-5 sm:p-6">
         <h1 className="text-3xl font-semibold text-center mb-4">
-          <span className="bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text font-bold">
             {data.tourPackageName}
           </span>
+
+          <p className="bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text text-sm py-4">{data.numDaysNight} - {location.label}</p>
         </h1>
-        <p className="text-md text-gray-600 text-center">{data.numDaysNight} - {data.locationId}</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        {data.images.map((image, index) => (
-          <div key={index} className="rounded-lg overflow-hidden">
-            <Image src={image.url} alt={`Image ${index + 1}`} width={600} height={400} layout="responsive" objectFit="cover" />
-          </div>
-        ))}
-      </div>
-
+      {/* Itineraries */}
       <div className="flex-1 space-y-6 overflow-y-auto">
         {sortedItineraries.map((itinerary, itineraryIndex) => (
-          <div key={itineraryIndex} className="bg-white shadow-lg rounded-lg p-4 mb-6">
-            <div className={`flex ${itineraryIndex % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center space-x-4 space-x-reverse mb-4`}>
+          <div key={itineraryIndex} className="shadow-lg rounded-lg p-4 mb-6">
+            {/* Use flex-col for mobile and flex-row for larger screens */}
+            <div className={`flex flex-col ${itineraryIndex % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center md:space-x-4 space-y-4 md:space-y-0`}>
               <div className="flex-1">
-                <h1 className="text-xl bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text">Day {itinerary.dayNumber}: {itinerary.itineraryTitle}</h1>
-                <p className="text-gray-900">{itinerary.itineraryDescription}</p>
+                <h1 className="text-xl bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text font-bold lg:px-8 md:px-8">Day {itinerary.dayNumber}: {itinerary.itineraryTitle}</h1>
+                <p className="text-gray-800 font-bold lg:px-8 md:px-8 text-justify">{itinerary.itineraryDescription}</p>
               </div>
-              <div className="w-48 h-48 relative">
+              <div className="w-full md:w-48 h-48 relative">
                 {itinerary.itineraryImages[0] && (
                   <Image
                     src={itinerary.itineraryImages[0].url}
@@ -62,12 +68,13 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
             <hr className="border-gray-800 my-4" />
             {itinerary.activities.map((activity, activityIndex) => (
               <div key={activityIndex} className="mb-4 last:mb-0">
-                <div className={`flex ${activityIndex % 2 !== 0 ? 'flex-row' : 'flex-row-reverse'} items-center space-x-4 space-x-reverse`}>
+                {/* Use flex-col for mobile and flex-row for larger screens */}
+                <div className={`flex flex-col ${activityIndex % 2 !== 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center md:space-x-4 space-y-4 md:space-y-0`}>
                   <div className="flex-1">
-                    <h3 className="text-lg bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text">{activity.activityTitle}</h3>
-                    <p className="text-gray-800">{activity.activityDescription}</p>
+                    <h3 className="text-lg bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text font-bold lg:px-8 md:px-8">{activity.activityTitle}</h3>
+                    <p className="text-gray-600 font-bold lg:px-8 md:px-8 text-justify">{activity.activityDescription}</p>
                   </div>
-                  <div className="w-48 h-48 relative">
+                  <div className="w-full md:w-48 h-48 relative">
                     {activity.activityImages[0] && (
                       <Image
                         src={activity.activityImages[0].url}
@@ -86,7 +93,8 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data }) => {
         ))}
       </div>
 
-      <div className="px-4 py-5 sm:p-6 border-t text-center">
+      {/* Back Button */}
+      <div className="py-5 sm:p-6 border-t text-center">
         <button onClick={handleBack} className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-150">
           Back
         </button>

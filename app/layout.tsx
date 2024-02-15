@@ -6,6 +6,7 @@ import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 
 import './globals.css'
+import ScrollToTop from '@/components/ui/ScrollToTop'
 
 const font = Urbanist({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ModalProvider />
         <Navbar />
         {children}
+        <ScrollToTop/>
         <Footer />
       </body>
     </html>

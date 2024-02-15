@@ -27,7 +27,7 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   }
 
   return (
-    <div className="space-y-4 px-8">
+    <div className="space-y-4 px-8 py-20">
     <h3 className="font-bold text-3xl">Tour Packages </h3>
     {tourPackages.length === 0 && <NoResults />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
