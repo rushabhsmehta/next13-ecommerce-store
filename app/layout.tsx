@@ -7,6 +7,7 @@ import Footer from '@/components/footer'
 
 import './globals.css'
 import ScrollToTop from '@/components/ui/ScrollToTop'
+import { Analytics } from '@vercel/analytics/react';
 
 const font = Urbanist({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ModalProvider />
         <Navbar />
         {children}
+        <Analytics />
         <ScrollToTop/>
         <Footer />
       </body>
