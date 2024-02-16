@@ -3,6 +3,8 @@ import getTourPackage from '@/actions/get-tourPackage';
 import getHotels from '@/actions/get-hotels';
 import TourPackageDetails from '@/components/ui/tourPackage-details';
 import getalltourPackages from '@/actions/get-all-tourPackages';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 
 interface TourPackagePageProps {
@@ -53,8 +55,9 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
+          <Suspense fallback={<Loading/>}>
     <TourPackageDetails data={tourPackage} location = {location} hotels = {hotels} />  
+    </Suspense>
     </div>
 
   );

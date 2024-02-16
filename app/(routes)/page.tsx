@@ -5,6 +5,8 @@ import Billboard from "@/components/ui/billboard";
 import Container from "@/components/ui/container";
 import HeroSection from "@/components/ui/herosection";
 import SearchBar from "@/components/ui/searchBarforLocations";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 
 const HomePage = async () => {
@@ -19,24 +21,25 @@ const HomePage = async () => {
   return (
     <Container>
       <div className="">
-        
-        <HeroSection />
-        {/*    <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
+      <Suspense fallback={<Loading/>}>
+
+          <HeroSection />
+          {/*    <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
           <ProductList title="Featured Products" items={products} />
         </div>
  */}
-        {/*  <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
+          {/*  <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
           <TourPackageList title="Tour Packages" items={tourPackages} />
         </div>
  */}
-        <div className="flex flex-col gap-y-8 pb-10 px-4 sm:px-6 lg:px-8">
-          <LocationList title="Tour Packages" items={locations} />
-        </div>
+          <div className="flex flex-col gap-y-8 pb-10 px-4 sm:px-6 lg:px-8">
+            <LocationList title="Tour Packages" items={locations} />
+          </div>
 
-        {/*  <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
+          {/*  <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8">
           <TourPackageQueryList title="Tour Packages" items={tourPackageQueries} />
         </div> */}
-
+        </Suspense>
       </div>
     </Container>
   )

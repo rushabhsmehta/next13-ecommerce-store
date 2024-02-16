@@ -5,6 +5,8 @@ import getLocation from '@/actions/get-location';
 import getLocations from '@/actions/get-locations';
 import Container from '@/components/ui/container';
 import Image from "next/image";
+import { Suspense } from 'react';
+import Loading from './loading';
 
 
 interface LocationPageProps {
@@ -51,6 +53,8 @@ const LocationPage: React.FC<LocationPageProps> = async ({
   return (
     <div className="bg-white">
       <Container>
+      <Suspense fallback={<Loading/>}>
+
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
 
@@ -70,6 +74,7 @@ const LocationPage: React.FC<LocationPageProps> = async ({
           <hr className="my-10" />
           {/* <TourPackageList title="Related Items" items={suggestedTourPackages} /> */}
         </div>
+        </Suspense>
       </Container>
     </div>
   )
