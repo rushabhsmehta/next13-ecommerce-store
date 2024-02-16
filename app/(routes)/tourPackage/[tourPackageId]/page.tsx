@@ -1,7 +1,7 @@
 
 import getLocations from '@/actions/get-location';
 import getTourPackage from '@/actions/get-tourPackage';
-
+import getHotels from '@/actions/get-hotels';
 import TourPackageDetails from '@/components/ui/tourPackage-details';
 
 export const revalidate = 0;
@@ -17,6 +17,9 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
 }) => {
   const tourPackage = await getTourPackage(params.tourPackageId);
   const location = await getLocations(tourPackage.locationId)
+  const hotels = await getHotels({locationId : tourPackage.locationId})
+
+  console.log(hotels)
   //  const suggestedTourPackages = await getTourPackages({ 
   //    locationId: tourPackage?.locationId
   //  });
@@ -30,7 +33,7 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-    <TourPackageDetails data={tourPackage} location = {location}  />  
+    <TourPackageDetails data={tourPackage} location = {location} hotels = {hotels} />  
     </div>
 
   );

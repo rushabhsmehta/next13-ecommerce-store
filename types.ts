@@ -153,3 +153,12 @@ export interface Color {
   name: string;
   value: string;
 };
+
+export interface Hotel {
+  id : string;
+  storeId : string;
+  locationId : string;
+  name : string;
+  images : Images[];
+  
+}

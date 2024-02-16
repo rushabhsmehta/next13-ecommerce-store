@@ -1,20 +1,16 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { TourPackage } from "@/types";
-import getLocations from "@/actions/get-location";
-import getLocation from "@/actions/get-location";
+import { Location, Hotel, TourPackage } from "@/types";
 
-interface Location {
-  label: string;
-}
 
 interface TourPackageDetailsProps {
   data: TourPackage;
   location: Location;
+  hotels: Hotel[];
 }
 
-const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data, location }) => {
+const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data, location, hotels }) => {
   const router = useRouter();
 
   const sortedItineraries = [...data.itineraries].sort((a, b) => {
@@ -46,13 +42,14 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data, location 
       {/* Itineraries */}
       <div className="flex-1 space-y-6 overflow-y-auto">
         {sortedItineraries.map((itinerary, itineraryIndex) => (
-          <div key={itineraryIndex} className="shadow-lg rounded-lg p-4 mb-6">
+          <div key={itineraryIndex} className="shadow-lg rounded-lg p-4 mb-6 divide-y divide-dashed">
             {/* Use flex-col for mobile and flex-row for larger screens */}
             <div className={`flex flex-col ${itineraryIndex % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center md:space-x-4 space-y-4 md:space-y-0`}>
               <div className="flex-1">
                 <h1 className="text-xl bg-gradient-to-r from-yellow-500 via-red-400 to-orange-400 text-transparent bg-clip-text font-bold lg:px-8 md:px-8">Day {itinerary.dayNumber}: {itinerary.itineraryTitle}</h1>
                 <p className="text-gray-800 font-bold lg:px-8 md:px-8 text-justify">{itinerary.itineraryDescription}</p>
               </div>
+
               <div className="w-full md:w-48 h-48 relative">
                 {itinerary.itineraryImages[0] && (
                   <Image
@@ -65,6 +62,50 @@ const TourPackageDetails: React.FC<TourPackageDetailsProps> = ({ data, location 
                 )}
               </div>
             </div>
+            {itinerary.hotelId && hotels.find(hotel => hotel.id === itinerary.hotelId) && (
+              <div className="mb-4 flex items-start space-x-4 px-4 py-4">
+                {/* Images Container */}
+                <div className="flex-shrink-0 mx-2 my-2 break-inside-avoid">
+                  {hotels.find(hotel => hotel.id === itinerary.hotelId)?.images.map((image, imgIndex) => (
+                    <Image
+                      key={imgIndex}
+                      src={image.url}
+                      alt={`Hotel Image ${imgIndex + 1}`}
+                      width={200}
+                      height={200}
+                      className="rounded-lg object-cover mb-2"
+                    />
+                  ))}
+                </div>
+                {/* Text Content */}
+                <div className="flex-grow mx-2 my-2">
+                  <div className="font-bold">Hotel:</div>
+                  <p className="text-sm mb-2">{hotels.find(hotel => hotel.id === itinerary.hotelId)?.name}</p>
+
+                  {itinerary.numberofRooms && (
+                    <>
+                      <div className="font-bold">Number of Rooms :</div>
+                      <p className="text-sm mb-4">{itinerary.numberofRooms}</p>
+                    </>
+                  )}
+
+                  {itinerary.roomCategory && (
+                    <>
+                      <div className="font-bold">Room Category :</div>
+                      <p className="text-sm mb-4">{itinerary.roomCategory}</p>
+                    </>
+                  )}
+
+                  {itinerary.mealsIncluded && (
+                    <>
+                      <div className="font-bold">Meal Plan:</div>
+                      <p className="text-sm mb-4">{itinerary.mealsIncluded}</p>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+
             <hr className="border-gray-800 my-4" />
             {itinerary.activities.map((activity, activityIndex) => (
               <div key={activityIndex} className="mb-4 last:mb-0">
