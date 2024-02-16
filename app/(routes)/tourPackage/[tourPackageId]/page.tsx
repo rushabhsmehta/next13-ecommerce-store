@@ -3,6 +3,8 @@ import getLocations from '@/actions/get-location';
 import getTourPackage from '@/actions/get-tourPackage';
 import getHotels from '@/actions/get-hotels';
 import TourPackageDetails from '@/components/ui/tourPackage-details';
+import gettourPackages from '@/actions/get-tourPackages';
+import getalltourPackages from '@/actions/get-all-tourPackages';
 
 
 interface TourPackagePageProps {
@@ -10,6 +12,29 @@ interface TourPackagePageProps {
     tourPackageId : string;
   },
 }
+
+export async function generateStaticParams() {
+  const data = await getalltourPackages( { storeId: "3eb7df82-57cc-4c68-aaeb-6b2531cd72d5" });
+  return data.map(item => ({
+    params: { locationId: item.id } // Ensure parameters match your dynamic route segments
+  }));
+}
+
+export async function generateMetadata({ params: { tourPackageId } }: TourPackagePageProps) {
+
+  const tourPackage = await getTourPackage(tourPackageId) //deduped!
+
+  if (!tourPackage) {
+    return {
+      title: 'Tour Package Not Found'
+    }
+
+    return {
+      title: tourPackage.tourPackageName,
+    }
+  }
+}
+
 
 const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   params
