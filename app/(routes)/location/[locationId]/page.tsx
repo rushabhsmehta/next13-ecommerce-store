@@ -16,8 +16,8 @@ interface LocationPageProps {
 export async function generateStaticParams() {
   const data = await getLocations({ storeId: "3eb7df82-57cc-4c68-aaeb-6b2531cd72d5" });
   return data.map(item => ({
-    params: { locationId: item.id } // Ensure parameters match your dynamic route segments
-  }));
+     locationId: item.id } // Ensure parameters match your dynamic route segments
+  ));
 }
 
 export async function generateMetadata({ params: { locationId } }: LocationPageProps) {

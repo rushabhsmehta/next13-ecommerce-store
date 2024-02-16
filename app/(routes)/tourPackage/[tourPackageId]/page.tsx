@@ -1,9 +1,7 @@
-
 import getLocations from '@/actions/get-location';
 import getTourPackage from '@/actions/get-tourPackage';
 import getHotels from '@/actions/get-hotels';
 import TourPackageDetails from '@/components/ui/tourPackage-details';
-import gettourPackages from '@/actions/get-tourPackages';
 import getalltourPackages from '@/actions/get-all-tourPackages';
 
 
@@ -14,10 +12,10 @@ interface TourPackagePageProps {
 }
 
 export async function generateStaticParams() {
-  const data = await getalltourPackages( { storeId: "3eb7df82-57cc-4c68-aaeb-6b2531cd72d5" });
-  return data.map(item => ({
-    params: { locationId: item.id } // Ensure parameters match your dynamic route segments
-  }));
+  const tourPackages  = await getalltourPackages( { storeId: "3eb7df82-57cc-4c68-aaeb-6b2531cd72d5" });
+  return tourPackages.map(tourPackage => ({
+     tourPackageId : tourPackage.id } // Ensure parameters match your dynamic route segments
+  ));
 }
 
 export async function generateMetadata({ params: { tourPackageId } }: TourPackagePageProps) {
@@ -26,6 +24,7 @@ export async function generateMetadata({ params: { tourPackageId } }: TourPackag
 
   if (!tourPackage) {
     return {
+      
       title: 'Tour Package Not Found'
     }
 
@@ -46,8 +45,7 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   //  const suggestedTourPackages = await getTourPackages({ 
   //    locationId: tourPackage?.locationId
   //  });
-  
-  
+   
 
   if (!tourPackage) {
     return null;
