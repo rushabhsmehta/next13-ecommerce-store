@@ -6,7 +6,7 @@ import getLocations from '@/actions/get-locations';
 import Container from '@/components/ui/container';
 import Image from "next/image";
 import { Suspense } from 'react';
-import Loading from './loading';
+import Loading from '@/app/loading';
 
 
 interface LocationPageProps {

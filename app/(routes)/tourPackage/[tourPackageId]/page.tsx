@@ -4,19 +4,20 @@ import getHotels from '@/actions/get-hotels';
 import TourPackageDetails from '@/components/ui/tourPackage-details';
 import getalltourPackages from '@/actions/get-all-tourPackages';
 import { Suspense } from 'react';
-import Loading from './loading';
+import Loading from '@/app/loading';
 
 
 interface TourPackagePageProps {
   params: {
-    tourPackageId : string;
+    tourPackageId: string;
   },
 }
 
 export async function generateStaticParams() {
-  const tourPackages  = await getalltourPackages( { storeId: "3eb7df82-57cc-4c68-aaeb-6b2531cd72d5" });
+  const tourPackages = await getalltourPackages({ storeId: "3eb7df82-57cc-4c68-aaeb-6b2531cd72d5" });
   return tourPackages.map(tourPackage => ({
-     tourPackageId : tourPackage.id } // Ensure parameters match your dynamic route segments
+    tourPackageId: tourPackage.id
+  } // Ensure parameters match your dynamic route segments
   ));
 }
 
@@ -26,7 +27,7 @@ export async function generateMetadata({ params: { tourPackageId } }: TourPackag
 
   if (!tourPackage) {
     return {
-      
+
       title: 'Tour Package Not Found'
     }
 
@@ -42,12 +43,12 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
 }) => {
   const tourPackage = await getTourPackage(params.tourPackageId);
   const location = await getLocations(tourPackage.locationId)
-  const hotels = await getHotels({locationId : tourPackage.locationId})
+  const hotels = await getHotels({ locationId: tourPackage.locationId })
 
   //  const suggestedTourPackages = await getTourPackages({ 
   //    locationId: tourPackage?.locationId
   //  });
-   
+
 
   if (!tourPackage) {
     return null;
@@ -55,9 +56,9 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Suspense fallback={<Loading/>}>
-    <TourPackageDetails data={tourPackage} location = {location} hotels = {hotels} />  
-    </Suspense>
+      <Suspense fallback={<Loading />}>
+        <TourPackageDetails data={tourPackage} location={location} hotels={hotels} />
+      </Suspense>
     </div>
 
   );

@@ -8,7 +8,7 @@ import TourPackageCard from '@/components/ui/tourPackage-card';
 import getLocations from '@/actions/get-locations';
 import getLocation from '@/actions/get-location';
 import { Suspense } from 'react';
-import Loading from './loading';
+import Loading from '@/app/loading';
 
 
 interface TourPackagePageProps {
@@ -59,11 +59,13 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
       <h3 className="font-bold text-3xl">Tour Packages </h3>
       {tourPackages.length === 0 && <NoResults />}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {tourPackages.map((tourPackage) => (
-          <Suspense fallback={<Loading/>}>
+        <Suspense fallback={<Loading />}>
+
+          {tourPackages.map((tourPackage) => (
             <TourPackageCard key={tourPackage.id} data={tourPackage} />
-          </Suspense>
-        ))}
+          ))}
+        </Suspense>
+
       </div>
     </div>
   );
