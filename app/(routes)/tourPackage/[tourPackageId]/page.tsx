@@ -4,7 +4,6 @@ import getTourPackage from '@/actions/get-tourPackage';
 import getHotels from '@/actions/get-hotels';
 import TourPackageDetails from '@/components/ui/tourPackage-details';
 
-export const revalidate = 0;
 
 interface TourPackagePageProps {
   params: {

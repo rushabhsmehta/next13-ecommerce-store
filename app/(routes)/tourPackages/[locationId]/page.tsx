@@ -6,7 +6,6 @@ import Container from '@/components/ui/container';
 import NoResults from '@/components/ui/no-results';
 import TourPackageCard from '@/components/ui/tourPackage-card';
 
-export const revalidate = 0;
 
 interface TourPackagePageProps {
   params: {

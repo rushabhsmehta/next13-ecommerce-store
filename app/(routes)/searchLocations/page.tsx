@@ -4,7 +4,6 @@ import Info from '@/components/info';
 import Container from '@/components/ui/container';
 import getLocationsFromSearchTerm from '@/actions/get-locationsfromSearchTerm';
 
-export const revalidate = 0;
 
 interface SearchLocationsPageProps {
   searchParams: {

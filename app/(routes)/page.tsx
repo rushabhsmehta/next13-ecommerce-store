@@ -6,7 +6,6 @@ import Container from "@/components/ui/container";
 import HeroSection from "@/components/ui/herosection";
 import SearchBar from "@/components/ui/searchBarforLocations";
 
-export const revalidate = 0;
 
 const HomePage = async () => {
 

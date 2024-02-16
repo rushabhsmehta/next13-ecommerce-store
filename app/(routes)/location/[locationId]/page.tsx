@@ -6,7 +6,6 @@ import getLocations from '@/actions/get-locations';
 import Container from '@/components/ui/container';
 import Image from "next/image";
 
-export const revalidate = 0;
 
 interface LocationPageProps {
   params: {

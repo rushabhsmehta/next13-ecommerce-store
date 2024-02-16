@@ -5,7 +5,6 @@ import getTourPackageQuery from '@/actions/get-tourPackageQuery';
 import getTourPackageQueries from '@/actions/get-tourPackageQueries';
 import Container from '@/components/ui/container';
 
-export const revalidate = 0;
 
 interface TourPackageQueryPageProps {
   params: {
