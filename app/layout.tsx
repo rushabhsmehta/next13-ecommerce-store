@@ -12,8 +12,8 @@ import { Analytics } from '@vercel/analytics/react';
 const font = Urbanist({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Store',
-  description: 'Store - The place for all your purchases.',
+  title: 'Aagam Holidays',
+  description: 'We plan memorable Trips',
 }
 
 export default function RootLayout({

@@ -19,7 +19,6 @@ const TourPackagePage: React.FC<TourPackagePageProps> = async ({
   const location = await getLocations(tourPackage.locationId)
   const hotels = await getHotels({locationId : tourPackage.locationId})
 
-  console.log(hotels)
   //  const suggestedTourPackages = await getTourPackages({ 
   //    locationId: tourPackage?.locationId
   //  });
