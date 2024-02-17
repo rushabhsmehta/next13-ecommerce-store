@@ -23,7 +23,7 @@ export default async function handler(req: NextRequest) {
     const token = searchParams.get('hub.verify_token');
     const challenge = searchParams.get('hub.challenge');
 
-    const VERIFY_TOKEN = 'your-verify-token';
+    const VERIFY_TOKEN = 'aagamholidays_whatsapp_token';
 
     if (mode && token) {
       if (mode === 'subscribe' && token === VERIFY_TOKEN) {
